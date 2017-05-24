@@ -12,18 +12,18 @@ namespace RefactoringKata
             this.id = id;
         }
 
-        public int GetOrderId()
+        public int OrderId
         {
-            return id;
+            get { return id; }
         }
 
-        public int GetProductsCount()
+        public int ProductsCount
         {
-            return _products.Count;
+            get { return _products.Count; }
         }
 
         public Product GetProduct(int j)
-        {
+        {            
             return _products[j];
         }
 
