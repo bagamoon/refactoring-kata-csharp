@@ -1,8 +1,9 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Text;
 
 namespace RefactoringKata
 {
-    public class Product
+    public class Product : IJson
     {
         public static int SIZE_NOT_APPLICABLE = -1;
 
@@ -17,6 +18,16 @@ namespace RefactoringKata
             get { return Size != ProductSize.InvalidSize; }
         }
 
+        public string ColorDesc
+        {
+            get { return Color.GetDescription(); }
+        }
+
+        public string SizeDesc
+        {
+            get { return Size.GetDescription(); }
+        }
+
         public Product(string code, int color, int size, double price, string currency)
         {
             Code = code;
@@ -27,6 +38,21 @@ namespace RefactoringKata
 
             Price = price;
             Currency = currency;
+        }
+
+        public string ToJson()
+        {
+            var props = new List<KeyValuePair<string, object>>();
+            props.Add(new KeyValuePair<string, object>("code", Code));
+            props.Add(new KeyValuePair<string, object>("color", ColorDesc));
+            if (IsSizeApplicable)
+            {
+                props.Add(new KeyValuePair<string, object>("size", SizeDesc));
+            }
+            props.Add(new KeyValuePair<string, object>("price", Price));
+            props.Add(new KeyValuePair<string, object>("currency", Currency));
+
+            return JsonHelper.GetJson(props);
         }
     }
 }

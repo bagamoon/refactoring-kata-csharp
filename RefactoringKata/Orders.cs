@@ -2,7 +2,7 @@
 
 namespace RefactoringKata
 {
-    public class Orders
+    public class Orders : IJson
     {
         private List<Order> _orders = new List<Order>();
 
@@ -19,6 +19,14 @@ namespace RefactoringKata
         public Order GetOrder(int i)
         {
             return _orders[i];
+        }
+
+        public string ToJson()
+        {
+            var props = new List<KeyValuePair<string, object>>();
+            props.Add(new KeyValuePair<string, object>("orders", _orders));            
+
+            return JsonHelper.GetJson(props);
         }
     }
 }

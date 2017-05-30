@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Enums.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="IJson.cs" />
+    <Compile Include="JsonHelper.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Orders.cs" />
     <Compile Include="OrdersWriter.cs" />
